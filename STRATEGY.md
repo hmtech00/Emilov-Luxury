@@ -41,7 +41,19 @@ see §5. Anything still not verifiable from the public profile remains an explic
 ## 2. Information architecture
 Shop (New Arrivals, Handbags, Watches, Jewelry, Accessories, Collectibles) · Sell With Us ·
 Private Shopping · Authenticity · About · Contact — plus utility: search, wishlist,
-WhatsApp, Instagram, EN/IT language switch (IT stubbed, EN complete for v1).
+WhatsApp, Instagram, IT/EN language switch (fully bilingual — see §6).
+
+## 6. Languages (this update)
+Italian is now the native/primary language, served at the root (`/`); English is the
+secondary language, served at `/en/` — a full mirror of every page with its own
+translated copy, `hreflang` alternates (it/en/x-default) on every page, and a working
+language switcher (IT ⇄ EN) in the header of both versions. `sitemap.xml` lists both
+language trees with their `hreflang` pairs. A handful of JS-generated strings (results
+count, wishlist toast, form-submit toast in `js/main.js`) are language-aware via
+`document.documentElement.lang`; everything else is static per-file copy, so editing
+either language later means editing that file directly — there's no shared string table.
+Nav labels, page titles/meta, and all body copy were translated natively (not run through
+a literal machine translation) to keep the "quiet luxury" editorial tone in Italian.
 
 ## 3. Pages built in this v1
 `index.html` `shop.html` `product.html` `authenticity.html` `sell-with-us.html`

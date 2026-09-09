@@ -39,6 +39,10 @@
     toastTimer = setTimeout(() => toastEl.classList.remove("show"), 2600);
   };
 
+  /* ---------- i18n (minimal — mirrors the static copy already on the page) ---------- */
+  const IS_IT = document.documentElement.lang === "it";
+  const t = (it, en) => (IS_IT ? it : en);
+
   /* ---------- Wishlist (localStorage) ---------- */
   const WISHLIST_KEY = "emilov_wishlist";
   function getWishlist() {
@@ -69,12 +73,12 @@
         current = current.filter((x) => x !== id);
         btn.classList.remove("active");
         btn.setAttribute("aria-pressed", "false");
-        showToast("Removed from wishlist");
+        showToast(t("Rimosso dalla lista dei desideri", "Removed from wishlist"));
       } else {
         current.push(id);
         btn.classList.add("active");
         btn.setAttribute("aria-pressed", "true");
-        showToast("Saved to wishlist");
+        showToast(t("Salvato nella lista dei desideri", "Saved to wishlist"));
       }
       setWishlist(current);
       updateWishlistCount();
@@ -94,7 +98,7 @@
         successEl.setAttribute("tabindex", "-1");
         successEl.focus();
       } else {
-        showToast("Thank you — we'll be in touch shortly.");
+        showToast(t("Grazie — ti contatteremo a breve.", "Thank you — we'll be in touch shortly."));
       }
       // NOTE: [CONFIRM] wire to real endpoint (Formspree / CRM / email) before launch.
       console.info("[EMILOV] Form submitted (demo only, no backend configured):", form.dataset.form);
@@ -127,7 +131,13 @@
         card.style.display = visible ? "" : "none";
         if (visible) visibleCount++;
       });
-      if (resultsCount) resultsCount.textContent = visibleCount + (visibleCount === 1 ? " piece" : " pieces");
+      if (resultsCount) {
+        const isItalian = document.documentElement.lang === "it";
+        const label = isItalian
+          ? (visibleCount === 1 ? " pezzo" : " pezzi")
+          : (visibleCount === 1 ? " piece" : " pieces");
+        resultsCount.textContent = visibleCount + label;
+      }
     }
     filterInputs.forEach((input) => input.addEventListener("change", applyFilters));
 
