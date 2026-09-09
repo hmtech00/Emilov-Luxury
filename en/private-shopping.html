@@ -59,10 +59,12 @@
       <form data-form="private-shopping-request" novalidate>
         <div class="form-grid">
           <div class="form-field"><label for="ps-name">Name *</label><input id="ps-name" name="name" type="text" required></div>
-          <div class="form-field"><label for="ps-email">Email *</label><input id="ps-email" name="email" type="email" required></div>
-          <div class="form-field"><label for="ps-whatsapp">WhatsApp / Phone</label><input id="ps-whatsapp" name="whatsapp" type="tel"></div>
-          <div class="form-field"><label for="ps-interest">What are you looking for? *</label><input id="ps-interest" name="interest" type="text" required placeholder="Brand, model, occasion…"></div>
-          <div class="form-field full"><label for="ps-notes">Additional Details</label><textarea id="ps-notes" name="notes"></textarea></div>
+          <div class="form-field"><label for="ps-email">Email / WhatsApp *</label><input id="ps-email" name="email" type="text" required></div>
+          <div class="form-field"><label for="ps-brand">Brand</label><input id="ps-brand" name="brand" type="text" placeholder="e.g. Hermès"></div>
+          <div class="form-field"><label for="ps-model">Model</label><input id="ps-model" name="model" type="text" placeholder="e.g. Kelly 25"></div>
+          <div class="form-field full"><label for="ps-interest">What are you looking for? *</label><input id="ps-interest" name="interest" type="text" required placeholder="Describe the piece, or the occasion"></div>
+          <div class="form-field"><label for="ps-budget">Indicative Budget</label><input id="ps-budget" name="budget" type="text" placeholder="Optional"></div>
+          <div class="form-field full"><label for="ps-notes">Notes</label><textarea id="ps-notes" name="notes"></textarea></div>
         </div>
         <button type="submit" class="btn btn-primary">Send Request</button>
       </form>
