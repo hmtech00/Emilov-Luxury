@@ -160,7 +160,27 @@
       thumb.addEventListener("click", () => {
         thumbs.forEach((t) => t.classList.remove("active"));
         thumb.classList.add("active");
-        mainImg.setAttribute("data-ph", thumb.getAttribute("data-ph"));
+        const src = thumb.getAttribute("data-ph-src");
+        const existingImg = mainImg.querySelector("img");
+        if (src) {
+          // Real photo: show/create the <img>, matching the thumb's alt text.
+          const thumbImg = thumb.querySelector("img");
+          if (existingImg) {
+            existingImg.src = src;
+            existingImg.alt = thumbImg ? thumbImg.alt : "";
+          } else {
+            const img = document.createElement("img");
+            img.className = "ph-img";
+            img.src = src;
+            img.alt = thumbImg ? thumbImg.alt : "";
+            mainImg.appendChild(img);
+          }
+          mainImg.removeAttribute("data-ph");
+        } else {
+          // Placeholder angle: remove any real photo so the pending label shows.
+          if (existingImg) existingImg.remove();
+          mainImg.setAttribute("data-ph", thumb.getAttribute("data-ph") || "");
+        }
       });
     });
   }
